@@ -120,7 +120,6 @@ if (!isset($_SESSION["_purchaseToken"])) {
                     </div>
                 </div>
             </div>
-
         </main>
 
         <?php require_once("inc/page-footer.php"); ?>

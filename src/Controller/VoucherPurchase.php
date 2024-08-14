@@ -87,34 +87,25 @@ class VoucherPurchase
 
         if ($res['success']) {
 
-            // $this->logActivity(
-            //     $vendor_id[0]["vendor"],
-            //     "INSERT",
-            //     "Vendor {$vendor_id} sold form with transaction ID {$trans_id}"
-            // );
-            if (!empty($data["phone_number"])) {
-                $message = 'RMU Online Application Payment Reference. ';
-                $message .= 'REF NUMBER: ' . $ref_code;
-                $to = $data["p_country_code"] . $data["phone_number"];
+            if (!empty($data['phone_number'])) {
+                $message = 'Your reference number is ' . $ref_code;
+                $to = $data['p_country_code'] . $data['phone_number'];
                 $response = json_decode($this->expose->sendSMS($to, $message));
-                if (!$response->status)  return array("success" => true, "code" => $ref_code);
-                else  return array("success" => false, "message" => $response);
+                if (!$response->status)  return array('success' => true, 'code' => $ref_code);
+                else  return array('success' => false, 'message' => $response);
             }
-            return $res;
 
-            if (!empty($data["email_address"])) {
+            if (!empty($data['email_address'])) {
                 // Prepare email
-                $emailMsg = "<p>Dear " . $data["first_name"] . " " . $data["last_name"] . ", </p></br>";
-                $emailMsg .= "<p>Find below the reference number you will use for payment of the form.</p></br>";
-                $emailMsg .= "<p style='font-weight: bold;'>REF NUMBER: " . $ref_code . "</p>";
-                $emailMsg .= "<p><a href='https://admissions.rmuictonline.com'>Click here</a> to access the online application portal and start the application process.</p>";
-                $emailMsg .= "<p>Thank you for choosing Regional Maritime University.</p>";
-                $emailMsg .= "<p>REGIONAL MARITIME UNIVERSITY</p>";
-                $this->expose->sendEmail($data["email_address"], 'RMU Online Application Payment Reference', $emailMsg);
-                return array("success" => true, "code" => $ref_code);
+                $emailMsg = '<p>Dear ' . $data['first_name'] . ' ' . $data['last_name'] . ', </p></br>';
+                $emailMsg .= '<p>Your reference number is <strong style="font-size: 18px">' . $ref_code . '</strong></p>';
+                $emailMsg .= '<p>Thank you for choosing Regional Maritime University.</p>';
+                $emailMsg .= '<p>REGIONAL MARITIME UNIVERSITY</p>';
+                $this->expose->sendEmail($data['email_address'], 'Reference Number', $emailMsg);
+                return array('success' => true, 'code' => $ref_code);
             }
         } else {
-            return array("success" => false, "message" => "Failed saving login details!");
+            return array('success' => false, 'message' => 'Failed saving login details!');
         }
     }
 }
