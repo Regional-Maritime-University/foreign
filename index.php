@@ -173,8 +173,10 @@ if (!isset($_SESSION["_purchaseToken"])) {
                     processData: false,
                     success: function(result) {
                         console.log(result);
-                        // if (result.success) window.location.href = result.message;
-                        // else flashMessage("flashMessage", "alert-danger", result.message);
+                        if (result.success) {
+                            flashMessage("flashMessage", "alert-success", result.message);
+                            window.location.href = result.message;
+                        } else flashMessage("flashMessage", "alert-danger", result.message);
                     },
                     error: function(error) {
                         console.log(error.statusText);

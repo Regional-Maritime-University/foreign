@@ -86,24 +86,27 @@ class VoucherPurchase
         $res = $this->saveLoginDetails($ref_code, $data);
 
         if ($res['success']) {
+            $_SESSION['ref_number'] = $ref_code;
+            $errors = [];
 
             if (!empty($data['phone_number'])) {
                 $message = 'Your reference number is ' . $ref_code;
                 $to = $data['p_country_code'] . $data['phone_number'];
                 $response = json_decode($this->expose->sendSMS($to, $message));
-                if (!$response->status)  return array('success' => true, 'code' => $ref_code);
-                else  return array('success' => false, 'message' => $response);
+                if ($response->status) $errors['sms'] = 'Failed to send your reference number via SMS';
             }
 
             if (!empty($data['email_address'])) {
-                // Prepare email
                 $emailMsg = '<p>Dear ' . $data['first_name'] . ' ' . $data['last_name'] . ', </p></br>';
                 $emailMsg .= '<p>Your reference number is <strong style="font-size: 18px">' . $ref_code . '</strong></p>';
                 $emailMsg .= '<p>Thank you for choosing Regional Maritime University.</p>';
                 $emailMsg .= '<p>REGIONAL MARITIME UNIVERSITY</p>';
-                $this->expose->sendEmail($data['email_address'], 'Reference Number', $emailMsg);
-                return array('success' => true, 'code' => $ref_code);
+                $emailed = $this->expose->sendEmail($data['email_address'], 'Reference Number', $emailMsg);
+                if (!$emailed['success']) $errors['email'] = 'Failed to send your reference number via Email';
             }
+
+            $_SESSION['ref_num_sending_errors'] = $errors;
+            return ['success' => true, 'message' => 'Data submitted successfully!'];
         } else {
             return array('success' => false, 'message' => 'Failed saving login details!');
         }

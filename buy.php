@@ -35,90 +35,9 @@ if (!isset($_SESSION["_purchaseToken"])) {
 
         <main class="container flex-container">
             <div class="flex-card">
-                <div class="form-card" style="border: 1px solid #003262; border-radius: 8px">
-
-                    <div class="purchase-card-header mb-4">
-                        <h1>Code Generation Form</h1>
-                    </div>
-
-                    <div class="purchase-card-body">
-                        <form id="purchaseForm" method="post" enctype="multipart/form-data">
-                            <div class="mb-4">
-                                <label class="form-label" for="first-name">First Name
-                                    <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Required">*</span>
-                                </label>
-                                <input title="Provide your first name" class="form-control form-control-lg" type="text" name="first-name" id="first-name" placeholder="Type your first name" required>
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="form-label" for="last-name">Last Name
-                                    <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Required">*</span>
-                                </label>
-                                <input style="width:100% !important" title="Provide your last name" class="form-control" type="text" name="last-name" id="last-name" placeholder="Type your last name" required>
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="form-label" for="email-address">Email Address
-                                    <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Required">*</span>
-                                </label>
-                                <input title="Provide your email address" class="form-control" type="email" name="email-address" id="email-address" placeholder="example@company.com" required>
-                            </div>
-
-                            <div>
-                                <label class="form-label" for="phone-number">Primary Phone Number
-                                    <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Required">*</span>
-                                </label>
-                            </div>
-                            <div class="mb-4 flex-row">
-                                <div class="me-2" style="width: 45%">
-                                    <select required name="primary-country-code" id="primary-country-code" title="Choose country" class="form-select form-control country-code">
-                                    </select>
-                                </div>
-                                <div>
-                                    <input required name="phone-number" id="phone-number" maxlength="12" title="Provide your Primary Phone Number" class="form-control" type="tel" placeholder="12345678901">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="form-label" for="support-number">Support Phone Number
-                                    <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Required">*</span>
-                                </label>
-                            </div>
-                            <div class="mb-4 flex-row">
-                                <div class="me-2" style="width: 45%">
-                                    <select required name="support-country-code" id="support-country-code" title="Choose country" class="form-select form-control country-code">
-                                    </select>
-                                </div>
-                                <div>
-                                    <input required name="support-number" id="support-number" maxlength="12" title="Provide a Support Phone Number" class="form-control" type="tel" placeholder="12345678901">
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="form-label" for="available-forms">Forms Type
-                                    <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Required">*</span>
-                                </label>
-                                <select name="available-forms" id="available-forms" title="Select the type of form you want to purchase." class="form-select form-info" required>
-                                    <option selected disabled value="">Choose...</option>
-                                    <?php
-                                    $data = $expose->getAvailableForms();
-                                    foreach ($data as $fp) {
-                                    ?>
-                                        <option value="<?= $fp['id'] ?>"><?= $fp['name'] ?></option>
-                                    <?php
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-
-                            <div class="mb-4" id="form-cost-display">
-                                <input type="hidden" name="_vPToken" value="<?= $_SESSION["_purchaseToken"]; ?>">
-                                <button class="btn btn-primary" type="submit" id="submitBtn" style="width:100%">Generate Code</button>
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <p>Your Ref Number:
+                <h1><?= $_SESSION["ref_number"] ?></h1>
+                </p>
             </div>
         </main>
 
