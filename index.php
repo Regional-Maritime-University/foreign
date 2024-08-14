@@ -22,7 +22,7 @@ if (!isset($_SESSION["_purchaseToken"])) {
 
 <head>
     <?php require_once("inc/head-section.php"); ?>
-    <title>Form Purchase | Step 1</title>
+    <title>RMU Form Online | Foreign Form Purchase</title>
 </head>
 
 <body class="fluid-container">
