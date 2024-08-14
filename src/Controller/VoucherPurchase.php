@@ -106,7 +106,7 @@ class VoucherPurchase
             }
 
             $_SESSION['ref_num_sending_errors'] = $errors;
-            return ['success' => true, 'message' => 'Data submitted successfully!'];
+            return ['success' => true, 'message' => 'info.php'];
         } else {
             return array('success' => false, 'message' => 'Failed saving login details!');
         }
