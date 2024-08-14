@@ -6,7 +6,4 @@
             <span><i class="bi bi-envelope-fill" style="color:#003262"></i> admission@rmu.edu.gh</span>
         </div>
     </div>
-    <div style="font-size: 14px; font-weight: 600">
-        <span>&#169; 2023 - REGIONAL MARITIME UNIVERSITY</span>
-    </div>
 </footer>

@@ -3,7 +3,7 @@
 namespace Src\Controller;
 
 use Src\System\DatabaseMethods;
-use Src\Controller\PaymentController;
+use Src\Controller\VoucherPurchase;
 use Src\Gateway\CurlGatewayAccess;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -158,40 +158,15 @@ class ExposeDataController
         return $response;
     }
 
-    /**
-     * @param int transaction_id //transaction_id
-     */
-    public function callOrchardGateway($data)
-    {
-        $payConfirm = new PaymentController();
-        return $payConfirm->orchardPaymentController($data);
-    }
-
-    /**
-     * @param int transaction_id //transaction_id
-     */
-    public function confirmPurchase(int $transaction_id)
-    {
-        $payConfirm = new PaymentController();
-        return $payConfirm->processTransaction($transaction_id);
-    }
-
-    public function processVendorPay($data)
-    {
-        $payConfirm = new PaymentController();
-        return $payConfirm->vendorPaymentProcess($data);
-    }
-
-    public function verifyPurchaseStatus($data)
-    {
-        $payConfirm = new PaymentController();
-        return $payConfirm->verifyPurchaseStatus($data);
-    }
-
     public function requestLogger($request)
     {
         $query = "INSERT INTO `ussd_request_logs` (`request`) VALUES(:nc)";
         $params = array(":nc" => $request);
         $this->dm->inputData($query, $params);
+    }
+
+    public function processRequest($data): mixed
+    {
+        return (new VoucherPurchase())->genLoginsAndSend($data);
     }
 }
