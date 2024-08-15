@@ -38,7 +38,7 @@ if (!isset($_SESSION["_purchaseToken"])) {
                 <div class="form-card" style="border: 1px solid #003262; border-radius: 8px">
 
                     <div class="purchase-card-header mb-4">
-                        <h1>Code Generation Form</h1>
+                        <h1>Online Application Code Request</h1>
                     </div>
 
                     <div class="purchase-card-body">
