@@ -11,6 +11,7 @@ CREATE TABLE `foreign_form_purchase_requests` (
     `s_country_name` VARCHAR(100) NOT NULL,
     `s_country_code` VARCHAR(10) NOT NULL,
     `support_number` VARCHAR(15) NOT NULL,
+    `app_number` VARCHAR(12), 
     `form` INT,
     `admission_period` INT,
     `added_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -28,4 +29,5 @@ CREATE INDEX idx_phone_number ON `foreign_form_purchase_requests` (`phone_number
 CREATE INDEX idx_s_country_name ON `foreign_form_purchase_requests` (`s_country_name`);
 CREATE INDEX idx_s_country_code ON `foreign_form_purchase_requests` (`s_country_code`);
 CREATE INDEX idx_support_number ON `foreign_form_purchase_requests` (`support_number`);
+CREATE INDEX idx_app_number ON `foreign_form_purchase_requests` (`app_number`);
 CREATE INDEX idx_added_at ON `foreign_form_purchase_requests` (`added_at`);
