@@ -220,6 +220,7 @@ if (!isset($_SESSION["_purchaseToken"])) {
                                     <input type="hidden" name="_vPToken" value="<?= $_SESSION["_purchaseToken"]; ?>">
                                     <button class="btn btn-primary" type="submit" id="submitBtn" style="width:100%">Generate Code</button>
                                 </div>
+                                <input type="hidden" name="state-type" value="non-member">
                             </form>
                         </div>
                     </div>

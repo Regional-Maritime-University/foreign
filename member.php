@@ -219,8 +219,8 @@ if (!isset($_SESSION["_purchaseToken"])) {
                                 <div class="mb-4" id="form-cost-display">
                                     <input type="hidden" name="_vPToken" value="<?= $_SESSION["_purchaseToken"]; ?>">
                                     <button class="btn btn-primary" type="submit" id="submitBtn" style="width:100%">Generate Code</button>
-
                                 </div>
+                                <input type="hidden" name="state-type" value="member">
                             </form>
                         </div>
                     </div>

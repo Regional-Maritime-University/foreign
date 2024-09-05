@@ -64,14 +64,18 @@ class VoucherPurchase
         return ['success' => false, 'message' => 'Error occured while saving your data. Please try again later.'];
     }
 
-    private function genLoginDetails(int $type, int $year)
+    private function genLoginDetails(int $type, int $year, string $state_type)
     {
         $rslt = 1;
         while ($rslt) {
             $code = $this->genAppNumber($type, $year);
             $rslt = $this->doesCodeExists($code);
         }
-        return 'RMU-F' . $code;
+        $state_code = match ($state_type) {
+            "member" => '1',
+            "non-member" => '0',
+        };
+        return 'RMUF' . $state_code . $code;
     }
 
     public function genLoginsAndSend(array $data)
@@ -82,7 +86,7 @@ class VoucherPurchase
         else if ($data["form_id"] == 1) $app_type = 2;
 
         $app_year = $this->expose->getAdminYearCode();
-        $ref_code = $this->genLoginDetails($app_type, $app_year);
+        $ref_code = $this->genLoginDetails($app_type, $app_year, $data["state_type"]);
         $res = $this->saveLoginDetails($ref_code, $data);
 
         if ($res['success']) {
