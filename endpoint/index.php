@@ -50,6 +50,8 @@ elseif ($_SERVER['REQUEST_METHOD'] == "POST") {
             die(json_encode(array("success" => false, "message" => "Phone number is required!")));
         if (!isset($_POST["support-number"]) || empty($_POST["support-number"]))
             die(json_encode(array("success" => false, "message" => "Support phone number is required!")));
+        if (!isset($_POST["state-type"]) || empty($_POST["state-type"]))
+            die(json_encode(array("success" => false, "message" => "Member type is required!")));
 
         $primary_country = $expose->validateCountryCode($_POST["primary-country-code"]);
         $phone_number = $expose->validatePhone($_POST["phone-number"]);
@@ -75,6 +77,7 @@ elseif ($_SERVER['REQUEST_METHOD'] == "POST") {
         $payload["s_country_name"]     = $support_country_name;
         $payload["s_country_code"]     = $support_country_code;
         $payload["support_number"]     = $support_number;
+        $payload["state_type"]          = $_POST["state-type"];
         $payload["adm_period"]       = $expose->getCurrentAdmissionPeriodID();
 
         $data = $expose->processRequest($payload);

@@ -11,7 +11,7 @@ CREATE TABLE `foreign_form_purchase_requests` (
     `s_country_name` VARCHAR(100) NOT NULL,
     `s_country_code` VARCHAR(10) NOT NULL,
     `support_number` VARCHAR(15) NOT NULL,
-    `app_number` VARCHAR(12) NOT NULL,
+    `app_number` VARCHAR(12), 
     `form` INT,
     `admission_period` INT,
     `added_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
